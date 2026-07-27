@@ -26,5 +26,5 @@ The site presents a cinematic portfolio experience with:
 Link to portfolio:
 
 ```bash
-https://kavya-portfolio-webpage-d1qsdx8z7-kthme.vercel.app/<img width="468" height="28" alt="image" src="https://github.com/user-attachments/assets/9a8a7acf-3701-4def-bbc6-c1fc17a6e789" />
+https://kavya-portfolio-webpage-d1qsdx8z7-kthme.vercel.app/
 

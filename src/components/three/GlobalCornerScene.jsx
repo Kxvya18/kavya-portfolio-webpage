@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Line } from "@react-three/drei";
 import { useLocation } from "react-router-dom";
-import { useDeviceProfile, DPR } from "../../lib/device";
+import { useDeviceProfile, useIdleReady, DPR } from "../../lib/device";
 
 // A hypergraph = triangles connecting groups of 3 nodes
 function Hypergraph({ scale = 1 }) {
@@ -107,6 +107,8 @@ function MiniNode() {
  */
 export default function GlobalCornerScene() {
   const profile = useDeviceProfile();
+  const idle = useIdleReady(2500); // never compete with first paint / page entrance animations
+  if (!idle) return null;
   // decorative only: skip on phones, touch-first devices, weak GPUs and reduced-motion
   if (profile.tier === "none" || profile.tier === "low" || profile.touch || profile.reducedMotion || profile.width < 900) return null;
   return <CornerScene profile={profile} />;

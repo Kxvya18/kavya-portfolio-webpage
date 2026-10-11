@@ -1,7 +1,6 @@
 import React from "react";
 import { Download, Printer, ArrowLeft, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import Nav from "../components/sections/Nav";
 import TerminalHeader from "../components/TerminalHeader";
 import {
@@ -88,11 +87,8 @@ export default function ResumePage() {
 
       {/* Resume document */}
       <div className="max-w-[1100px] mx-auto px-8 pb-24 print:pt-8">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="rounded-2xl border border-[#2a2416] bg-[#141009] print:border-0 print:bg-white overflow-hidden"
+        <div
+          className="hero-in rounded-2xl border border-[#2a2416] bg-[#141009] print:border-0 print:bg-white overflow-hidden"
         >
           {/* window chrome */}
           <div className="print:hidden px-5 py-3 border-b border-[#2a2416] flex items-center gap-2 bg-[#0e0c08]/60">
@@ -261,7 +257,7 @@ export default function ResumePage() {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <style>{`

@@ -32,7 +32,12 @@ function StaticConstellation() {
 function Scene({ profile }) {
   const box = useRef(null);
   const inView = useInView(box, "0px");
-  const idle = useIdleReady(700);
+  const near = useInView(box, "300px");
+  const idle = useIdleReady(1200);
+  const [armed, setArmed] = useState(false);
+  React.useEffect(() => { const t = setTimeout(() => setArmed(true), 900); return () => clearTimeout(t); }, []);
+  const [load, setLoad] = useState(false);
+  React.useEffect(() => { if (near && idle && armed) setLoad(true); }, [near, idle, armed]);
   const [ready, setReady] = useState(false);
   const webgl = profile.tier !== "none";
   return (
@@ -40,7 +45,7 @@ function Scene({ profile }) {
       <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}>
         <StaticConstellation />
       </div>
-      {webgl && idle && (
+      {webgl && load && (
         <Suspense fallback={null}>
           <div className={`absolute inset-0 transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`}>
             <ProjectConstellation profile={profile} inView={inView} onReady={() => setReady(true)} />
@@ -50,8 +55,6 @@ function Scene({ profile }) {
     </div>
   );
 }
-
-const fade = (delay) => ({ initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { delay, duration: 0.6 } });
 
 export default function Hero() {
   const navigate = useNavigate();
@@ -87,23 +90,21 @@ export default function Hero() {
         }`}
       >
         <div className={portrait ? "" : "max-w-[46rem] lg:max-w-[40rem] xl:max-w-[44rem]"}>
-          <motion.p {...fade(0)} className="text-[#a89b7a] text-[11px] sm:text-xs tracking-[0.3em] uppercase mb-5 sm:mb-8">
+          <p style={{ animationDelay: "0s" }} className="hero-in text-[#a89b7a] text-[11px] sm:text-xs tracking-[0.3em] uppercase mb-5 sm:mb-8">
             {heroData.eyebrow}
-          </motion.p>
+          </p>
 
-          <motion.h1
-            {...fade(0.05)}
-            className="font-serif text-[#f5efe0] leading-[1.03] tracking-tight"
-            style={{ fontSize: shortLandscape ? "clamp(1.9rem, 5vw, 3rem)" : "clamp(2.35rem, 6.4vw, 5.6rem)" }}
+          <h1 className="hero-in font-serif text-[#f5efe0] leading-[1.03] tracking-tight"
+            style={{ animationDelay: "0.05s", fontSize: shortLandscape ? "clamp(1.9rem, 5vw, 3rem)" : "clamp(2.35rem, 6.4vw, 5.6rem)" }}
           >
             {heroData.headline}
-          </motion.h1>
+          </h1>
 
-          <motion.p {...fade(0.12)} className="mt-6 sm:mt-8 max-w-2xl text-[#b8ac8c] text-[15px] sm:text-base md:text-lg leading-relaxed">
+          <p style={{ animationDelay: "0.12s" }} className="hero-in mt-6 sm:mt-8 max-w-2xl text-[#b8ac8c] text-[15px] sm:text-base md:text-lg leading-relaxed">
             {heroData.summary}
-          </motion.p>
+          </p>
 
-          <motion.div {...fade(0.2)} className="mt-7 sm:mt-10 flex flex-wrap gap-3 pointer-events-auto">
+          <div style={{ animationDelay: "0.2s" }} className="hero-in mt-7 sm:mt-10 flex flex-wrap gap-3 pointer-events-auto">
             <button
               onClick={() => navigate("/work")}
               className="group inline-flex items-center gap-2 px-6 py-3 min-h-[44px] rounded-full bg-[#c9a961] text-[#0e0c08] hover:bg-[#e6d9a8] transition-colors text-sm font-medium"
@@ -119,15 +120,15 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] rounded-full border border-[#3a3220] text-[#e6e1d6] hover:border-[#c9a961] hover:text-[#e6d9a8] transition-colors text-sm font-medium">
               <Linkedin className="w-4 h-4" /> LinkedIn
             </a>
-          </motion.div>
+          </div>
 
           {!portrait && !shortLandscape && (
-            <motion.div {...fade(0.35)} className="mt-12">
+            <div style={{ animationDelay: "0.35s" }} className="hero-in mt-12">
               <p className="text-[#5a5340] text-[10px] tracking-[0.3em] uppercase mb-3">
                 Project map · hover a node, click to open
               </p>
               {Legend}
-            </motion.div>
+            </div>
           )}
         </div>
       </div>

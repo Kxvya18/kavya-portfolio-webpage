@@ -116,3 +116,8 @@ code {
 
 /* Never let a single element widen the page on phones (prevents zoom-out / off-screen nav) */
 html, body { overflow-x: clip; }
+
+/* Hero text entrance runs on the compositor, so it never stalls while the 3D chunk loads */
+@keyframes heroIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.hero-in { animation: heroIn 0.6s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .hero-in { animation: none; } }

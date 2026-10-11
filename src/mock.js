@@ -5,7 +5,7 @@ export const heroData = {
   eyebrow: "AI Engineering / ML Research / Graph Intelligence",
   headline: "Building AI systems with math, graphs, and code.",
   summary:
-    "Computer Science (Data Science) undergraduate building ML systems that are tested honestly: graph and temporal learning, generative models, EEG and biomedical AI, security ML, and agentic LLM systems. Papers with Mahadevi S at CIMA 2026 and in preparation.",
+    "Computer Science (Data Science) undergraduate building ML systems that are tested honestly: graph and temporal learning, generative models, EEG and biomedical AI, security ML, and agentic LLM systems.",
   labels: ["AI engineering", "LLM systems", "Graphs + topology", "Model evaluation"],
 };
 
@@ -99,13 +99,13 @@ export const selectedWork = [
     "category": "Graph ML",
     "tag": "Graphs",
     "repo": "https://github.com/Kxvya18/transferguard-curvature-audited-localization",
-    "text": "Selective Boltzmann growth priors for attack-origin ranking under sparse telemetry; ANTIC conference + IEEE journal versions.",
+    "text": "Selective Boltzmann growth priors for attack-origin ranking under sparse telemetry; conference + IEEE journal versions.",
     "detail": {
       "title": "Curvature-Audited Boltzmann Evidence for Source Localization in Evolving Networks",
       "summary": "Temporal graph inference for ranking attack origins under sparse telemetry, combining temporal encoders with a reliability-shrunk Boltzmann growth prior admitted only where it is identifiable.",
       "stack": "Python, PyTorch, temporal GNNs, IoT-23, TON-IoT, SNAP citation data, conformal prediction.",
       "pipeline": "480 controlled graph regimes, real transfer checks on 1.19M IoT-23 events, uncertainty and shift audits, intervention studies.",
-      "outputs": "Conference paper (ANTIC) and IEEE journal manuscript with Mahadevi S; evaluation suites and figures.",
+      "outputs": "Conference paper and IEEE journal manuscript; evaluation suites and figures.",
       "metrics": "Selective low-evidence MRR gain 0.0085 overall and 0.0268 in the high-reliability subgroup; shows unconditional fusion can hurt."
     }
   },
@@ -121,7 +121,7 @@ export const selectedWork = [
       "summary": "Decision-aware quantum expert routing: a shallow variational circuit fuses recent-contact and historical-diffusion experts from shared-basis bitstring readouts, and spends measurement shots only until the shortlist is certified.",
       "stack": "Python, variational quantum circuits, temporal communication networks, sequential statistics.",
       "pipeline": "Circuit design, local and pairwise readouts, shot-adaptive certification, confirmatory and stress runs.",
-      "outputs": "IEEE conference manuscript with Mahadevi S, figures and reports.",
+      "outputs": "IEEE conference manuscript, figures and reports.",
       "metrics": "Certified top-ten decisions with fewer measurement shots than fixed-precision estimation."
     }
   },
@@ -194,7 +194,7 @@ export const selectedWork = [
 export const projectIndex = [
   {
     "title": "HART Adapter Placement for Sampling-Rate Transfer",
-    "text": "Wearable HAR: where adapters should sit relative to a frozen time-frequency contextualizer. Presented at CIMA 2026.",
+    "text": "Wearable HAR: where adapters should sit relative to a frozen time-frequency contextualizer.",
     "repo": "https://github.com/Kxvya18/hart-sampling-rate-adapters"
   },
   {

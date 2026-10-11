@@ -5,7 +5,7 @@ export const heroData = {
   eyebrow: "AI Engineering / ML Research / Graph Intelligence",
   headline: "Building AI systems with math, graphs, and code.",
   summary:
-    "Computer Science (Data Science) undergraduate building ML systems that are tested honestly: graph and temporal learning, generative models, EEG and biomedical AI, security ML, and agentic LLM systems.",
+    "Computer Science (Data Science) undergraduate building ML systems that are tested honestly: forecasting and MLOps, graph and temporal learning, generative models, EEG and biomedical AI, security ML, and agentic LLM systems.",
   labels: ["AI engineering", "LLM systems", "Graphs + topology", "Model evaluation"],
 };
 
@@ -43,6 +43,22 @@ export const selectedWork = [
       "pipeline": "Build a labelled dataset from observed theft outcomes, canonicalise bytecode, extract idioms, score by signed similarity, evaluate under a zero-day protocol that withholds whole code families and under adaptive attacks.",
       "outputs": "Released dataset (637,846 authorizations, 464,178 accounts, 661 contracts), IEEE TIFS-format manuscript, 12 figures, all tables as CSV.",
       "metrics": "Recall 0.984 under every attack; AUROC 0.946 on the first victim of a new contract; 0.16% false-alarm rate when screening signature requests."
+    }
+  },
+  {
+    "id": "palletcast",
+    "title": "PalletCast: End-to-End MLOps Forecasting",
+    "category": "MLOps",
+    "tag": "Systems",
+    "repo": "https://github.com/Kxvya18/palletcast-forecasting-mlops",
+    "text": "14-day warehouse pallet forecasting through all nine MLOps stages: validation, features, 17-model contest, registry, API, monitoring, CI/CD.",
+    "detail": {
+      "title": "PalletCast: End-to-End MLOps for Cold-Chain Pallet Forecasting",
+      "summary": "Forecasts each site's outbound pallets for the next 14 days for an automated cold-storage operator, so dock slots, trucks and shifts can be planned. Built as a complete production-style ML lifecycle on simulated data whose ground truth makes every pipeline check measurable.",
+      "stack": "Python, pandas, LightGBM, XGBoost, statsforecast, Prophet, neuralforecast, pandera, DVC, MLflow, Prefect, FastAPI, Docker, Evidently, GitHub Actions.",
+      "pipeline": "Simulated WMS feed with planted faults, validation with quarantine, point-in-time features with leakage tests, 17-model contest in 5 families, registry with promotion gate, monthly Prefect flow, FastAPI service, live error/bias/drift monitoring, retraining-policy experiment, CI/CD.",
+      "outputs": "Leaderboards, registry with lineage, forecast API container, monitoring tables and alerts, stage-by-stage write-ups.",
+      "metrics": "WAPE 10.8% vs 14.6% for the best simple rule (2025 backtest) and 10.9% on unseen 2026; customer changes caught in the first week by bias monitoring; retraining cut under-forecasting bias from -1.6% to -0.3%."
     }
   },
   {
@@ -239,7 +255,7 @@ export const projectIndex = [
   },
   {
     "title": "MOGA-FCM Cognitive Load",
-    "text": "NSGA-III feature selection with Bayesian-tuned fuzzy clustering on driving physiology.",
+    "text": "Paper at CIMA 2026 (NIT Puducherry): NSGA-III feature selection with Bayesian-tuned fuzzy C-means for unsupervised driver cognitive-load detection.",
     "repo": "https://github.com/Kxvya18/moga-fcm-cognitive-load-detection"
   },
   {
@@ -394,3 +410,13 @@ export const contact = {
   cvUrl: "/Kavya_Kalavala_Resume.docx",
   cvPdfUrl: "/Kavya_Kalavala_Resume.docx",
 };
+
+export const publications = [
+  {
+    authors: "K. Kalavala, A. Pandey, S. Priya",
+    title: "MOGA-FCM: Unsupervised Cognitive Load Detection via Multi-Objective Genetic Algorithms and Bayesian Fuzzy C-Means in ADAS",
+    venue: "2nd Congress on Intelligent Machines and Algorithms (CIMA 2026), NIT Puducherry",
+    year: "2026",
+    repo: "https://github.com/Kxvya18/moga-fcm-cognitive-load-detection",
+  },
+];

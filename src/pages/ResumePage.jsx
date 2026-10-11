@@ -11,6 +11,7 @@ import {
   skills,
   education,
   certifications,
+  publications,
   contact,
 } from "../mock";
 
@@ -209,7 +210,22 @@ export default function ResumePage() {
               </div>
             </Section>
 
-            <Section n="06" label="Education">
+            <Section n="06" label="Publications">
+              <div className="space-y-3">
+                {publications.map((p, i) => (
+                  <div key={i} className="grid md:grid-cols-[140px_1fr] gap-3">
+                    <div className="text-[10px] tracking-[0.25em] uppercase text-[#8a7c5c] pt-1 font-mono">{p.year}</div>
+                    <div>
+                      <div className="font-serif text-[#f5efe0] text-sm leading-snug">{p.title}</div>
+                      <div className="text-[#a89b7a] text-xs mt-0.5">{p.authors}</div>
+                      <div className="text-[#c9a961] text-[11px] mt-0.5">{p.venue}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Section>
+
+            <Section n="07" label="Education">
               <div className="space-y-4">
                 {education.map((e, i) => (
                   <div key={i} className="grid md:grid-cols-[140px_1fr] gap-3">
@@ -226,7 +242,7 @@ export default function ResumePage() {
               </div>
             </Section>
 
-            <Section n="07" label="Certifications">
+            <Section n="08" label="Certifications">
               <ul className="grid md:grid-cols-2 gap-x-8 gap-y-1.5 list-none">
                 {certifications.map((c, i) => (
                   <li key={i} className="text-[#a89b7a] text-xs leading-relaxed flex gap-2">

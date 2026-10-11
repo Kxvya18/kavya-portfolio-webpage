@@ -17,7 +17,7 @@ export default function ProjectDetail({ project, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-8"
     >
       <div
         className="absolute inset-0 bg-[#0e0c08]/85 backdrop-blur-md"
@@ -28,11 +28,11 @@ export default function ProjectDetail({ project, onClose }) {
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 40, opacity: 0, scale: 0.98 }}
         transition={{ type: "spring", damping: 24 }}
-        className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border border-[#3a3220] bg-[#141009] p-8 md:p-12"
+        className="relative w-full max-w-3xl max-h-[92svh] sm:max-h-[85vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl border border-[#3a3220] bg-[#141009] p-6 pt-14 sm:p-8 md:p-12"
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center border border-[#3a3220] text-[#a89b7a] hover:bg-[#c9a961] hover:text-[#0e0c08] hover:border-[#c9a961] transition-colors"
+          className="absolute top-4 right-4 w-11 h-11 rounded-full flex items-center justify-center border border-[#3a3220] text-[#a89b7a] hover:bg-[#c9a961] hover:text-[#0e0c08] hover:border-[#c9a961] transition-colors"
         >
           <X className="w-4 h-4" />
         </button>

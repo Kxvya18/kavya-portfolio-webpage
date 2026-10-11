@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { filters, selectedWork } from "../../mock";
@@ -8,6 +8,11 @@ import TerminalHeader from "../TerminalHeader";
 export default function SelectedWork({ hideHeader = false }) {
   const [active, setActive] = useState("All");
   const [openId, setOpenId] = useState(null);
+  // deep link from the 3D project map: /work#<project-id> opens that project
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.replace("#", ""));
+    if (id && selectedWork.some((p) => p.id === id)) setOpenId(id);
+  }, []);
 
   const list =
     active === "All" ? selectedWork : selectedWork.filter((p) => p.tag === active);

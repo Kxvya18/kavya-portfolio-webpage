@@ -3,7 +3,8 @@ import { heroData } from "../../mock";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle";
-import { Command } from "lucide-react";
+import { Command, Menu, X } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 
 const navItems = [
   { label: "Work", to: "/work" },
@@ -15,7 +16,15 @@ const navItems = [
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+
+  // close the mobile menu on navigation; lock page scroll while it is open
+  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -45,7 +54,7 @@ export default function Nav() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-8 py-5 flex items-center justify-between gap-4">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-4">
         <Link to="/" className="font-serif text-[#e6e1d6] text-lg tracking-wide">
           {heroData.name}
         </Link>
@@ -79,8 +88,41 @@ export default function Nav() {
             <span className="font-mono">K</span>
           </button>
           <ThemeToggle />
+          <button
+            onClick={() => setOpen((o) => !o)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-[#3a3220] text-[#e6e1d6]"
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden fixed inset-x-0 top-[68px] bottom-0 bg-[#0e0c08]/97 backdrop-blur-xl border-t border-[#2a2416] px-6 pt-6 pb-10 overflow-y-auto"
+          >
+            {[{ label: "Home", to: "/" }, ...navItems].map((n, i) => (
+              <motion.div key={n.label} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.03 * i }}>
+                <Link
+                  to={n.to}
+                  className={`block py-4 border-b border-[#2a2416] font-serif text-3xl ${
+                    pathname === n.to ? "text-[#e6d9a8]" : "text-[#e6e1d6]"
+                  }`}
+                >
+                  {n.label}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

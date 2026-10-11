@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Line } from "@react-three/drei";
 import { useLocation } from "react-router-dom";
+import { useDeviceProfile, DPR } from "../../lib/device";
 
 // A hypergraph = triangles connecting groups of 3 nodes
 function Hypergraph({ scale = 1 }) {
@@ -105,6 +106,13 @@ function MiniNode() {
  * - Blooms into hypergraph on skills section
  */
 export default function GlobalCornerScene() {
+  const profile = useDeviceProfile();
+  // decorative only: skip on phones, touch-first devices, weak GPUs and reduced-motion
+  if (profile.tier === "none" || profile.tier === "low" || profile.touch || profile.reducedMotion || profile.width < 900) return null;
+  return <CornerScene profile={profile} />;
+}
+
+function CornerScene({ profile }) {
   const { pathname } = useLocation();
   const [mode, setMode] = useState("hidden"); // hidden | mini | bloom
 
@@ -149,7 +157,7 @@ export default function GlobalCornerScene() {
       style={{ pointerEvents: "none" }}
     >
       <div className="w-full h-full rounded-full overflow-hidden border border-[#3a3220]/60 bg-[#0e0c08]/40 backdrop-blur-md">
-        <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }} dpr={[1, 2]}>
+        <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }} dpr={DPR[profile.tier]} frameloop={mode === "hidden" ? "never" : "always"}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[3, 3, 3]} intensity={0.8} />
           <pointLight position={[-3, -2, 2]} intensity={0.4} color="#f0e6cf" />

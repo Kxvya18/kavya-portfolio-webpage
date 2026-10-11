@@ -115,8 +115,8 @@ function Constellation({ active, setActive, spin, offsetX = 0 }) {
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </instancedMesh>
       {shown && (
-        <Html position={shown.pos} center distanceFactor={7} zIndexRange={[30, 0]}>
-          <div className="pointer-events-auto -translate-y-10 min-w-[180px] max-w-[240px] rounded-xl border border-[#3a3220] bg-[#141009]/95 backdrop-blur px-3 py-2 text-left shadow-xl">
+        <Html position={shown.pos} center distanceFactor={7} zIndexRange={[30, 0]} style={{ transform: "translateY(-50%)" }}>
+          <div style={{ transform: "translateY(calc(-50% - 22px))" }} className={`${active !== null ? "pointer-events-auto" : "pointer-events-none"} min-w-[180px] max-w-[240px] rounded-xl border border-[#3a3220] bg-[#141009]/95 backdrop-blur px-3 py-2 text-left shadow-xl`}>
             <p className="text-[9px] tracking-[0.2em] uppercase" style={{ color: AREAS.find((a) => a.key === shown.area).color }}>
               {AREAS.find((a) => a.key === shown.area).label}
             </p>

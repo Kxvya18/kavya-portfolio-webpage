@@ -15,14 +15,8 @@ import {
 } from "../mock";
 
 export default function ResumePage() {
-  const downloadPdf = () => {
-    const a = document.createElement("a");
-    a.href = contact.cvPdfUrl;
-    a.download = "Kavya_Resume.pdf";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  };
+  // Print this page (print styles hide the site chrome) so the browser saves an up-to-date PDF
+  const downloadPdf = () => window.print();
 
   const downloadDocx = async () => {
     try {
@@ -31,7 +25,7 @@ export default function ResumePage() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "Kavya_Resume.docx";
+      a.download = "Kavya_Kalavala_Resume.docx";
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -65,7 +59,7 @@ export default function ResumePage() {
           </button>
           <a
             href={contact.cvUrl}
-            download="Kavya_Resume.docx"
+            download="Kavya_Kalavala_Resume.docx"
             onClick={(e) => {
               e.preventDefault();
               downloadDocx();

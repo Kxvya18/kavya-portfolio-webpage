@@ -32,13 +32,17 @@ export default function ProjectIndex({ hideHeader = false }) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.04, duration: 0.6 }}
-              className="group grid md:grid-cols-[80px_1fr_2fr] gap-6 py-7 hover:bg-[#141009] px-2 md:px-4 transition-colors cursor-default"
+              className="group grid md:grid-cols-[80px_1fr_2fr] gap-6 py-7 hover:bg-[#141009] px-2 md:px-4 transition-colors "
             >
               <div className="font-mono text-[#5a5340] text-xs pt-1">
                 {String(idx + 1).padStart(2, "0")}
               </div>
               <h3 className="font-serif text-[#f5efe0] text-lg md:text-xl leading-snug group-hover:text-[#e6d9a8] transition-colors">
-                {p.title}
+                {p.repo ? (
+                  <a href={p.repo} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">
+                    {p.title}
+                  </a>
+                ) : p.title}
               </h3>
               <p className="text-[#8a7c5c] text-sm leading-relaxed">{p.text}</p>
             </motion.div>

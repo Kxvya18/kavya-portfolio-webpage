@@ -5,19 +5,19 @@ export const heroData = {
   eyebrow: "AI Engineering / ML Research / Graph Intelligence",
   headline: "Building AI systems with math, graphs, and code.",
   summary:
-    "Computer Science Data Science undergraduate focused on AI engineering, machine learning, deep learning, LLM systems, mathematical learning, graph-based inference, topology, optimization, and reproducible research software.",
+    "Computer Science (Data Science) undergraduate building ML systems that are tested honestly: graph and temporal learning, generative models, EEG and biomedical AI, security ML, and agentic LLM systems. Papers with Mahadevi S at CIMA 2026 and in preparation.",
   labels: ["AI engineering", "LLM systems", "Graphs + topology", "Model evaluation"],
 };
 
 export const researchStrip = [
-  "LLM Evaluation",
-  "RAG",
-  "Graph Learning",
-  "Topological Data Analysis",
-  "Calibration",
-  "Optimization",
-  "Healthcare AI",
-  "AI Automation",
+  "Graph ML",
+  "Generative AI",
+  "NeuroAI / EEG",
+  "Biomedical AI",
+  "Security ML",
+  "Agentic LLM Systems",
+  "Uncertainty & Calibration",
+  "Quantum ML",
 ];
 
 export const profile = {
@@ -30,196 +30,268 @@ export const filters = ["All", "LLM", "ML", "Graphs", "Systems"];
 
 export const selectedWork = [
   {
-    id: "pirge",
-    title: "PIRGE CodeGuard: Pre-Execution Reasoning Graphs",
-    category: "Agent Safety",
-    tag: "LLM",
-    text:
-      "Python prototype for action warrants, capability scoping, repo-injection checks, command-intent diffs, and audit logs.",
-    detail: {
-      title: "PIRGE CodeGuard: Pre-Execution Reasoning Graphs for Coding Agents",
-      summary:
-        "Prototype for checking coding-agent actions before execution using reasoning graphs, action warrants, capability scoping, command intent checks, and audit logs.",
-      stack:
-        "Python, graph modeling, policy rules, local LLM traces, shell-command metadata, repository instructions, tests, and source files.",
-      pipeline:
-        "Parse proposed edits or commands, build a provenance graph, compare action intent with the user goal, apply policy checks, and create an allow/block/substitute decision.",
-      outputs:
-        "Decision reports, audit JSON, lightweight dashboards, decision graphs, benchmark tables, and safe-substitute suggestions.",
-      metrics:
-        "Decision accuracy, blocked risky actions, security-utility trade-off, test status, and audit coverage.",
-    },
+    "id": "delegnet",
+    "title": "DelegNet: Malicious EIP-7702 Delegation Detection",
+    "category": "Security ML",
+    "tag": "ML",
+    "repo": "https://github.com/Kxvya18/DelegNet",
+    "text": "Pre-signature detection of wallet-draining delegations from bytecode alone; zero-day evaluation on 637K real authorizations.",
+    "detail": {
+      "title": "DelegNet: Canonical Code-Pattern Recognition for Pre-Signature Detection of Malicious EIP-7702 Delegations",
+      "summary": "Detects malicious Ethereum EIP-7702 delegations before the user signs. A pattern-recognition module canonicalises delegate bytecode to remove attacker disguises, extracts interpretable theft idioms, and scores contracts against a family-exclusive memory with case-based explanations.",
+      "stack": "Python, PyTorch, temporal graph networks, bytecode analysis, on-chain data (Ethereum), scikit-learn.",
+      "pipeline": "Build a labelled dataset from observed theft outcomes, canonicalise bytecode, extract idioms, score by signed similarity, evaluate under a zero-day protocol that withholds whole code families and under adaptive attacks.",
+      "outputs": "Released dataset (637,846 authorizations, 464,178 accounts, 661 contracts), IEEE TIFS-format manuscript, 12 figures, all tables as CSV.",
+      "metrics": "Recall 0.984 under every attack; AUROC 0.946 on the first victim of a new contract; 0.16% false-alarm rate when screening signature requests."
+    }
   },
   {
-    id: "eeg",
-    title: "EEG Topology and Brain-Network Dynamics",
-    category: "Topology",
-    tag: "Graphs",
-    text:
-      "EEG preprocessing, functional-connectivity graphs, clique filtrations, topology features, and ML evaluation.",
-    detail: {
-      title: "EEG Topology and Brain-Network Dynamics",
-      summary:
-        "Research project using graph and topology features to study workload-related structure in EEG functional-connectivity networks.",
-      stack:
-        "Python, NumPy, pandas, NetworkX-style graph analysis, persistent homology concepts, STEW-style EEG signals, and workload labels.",
-      pipeline:
-        "Signal preprocessing, functional-connectivity construction, graph thresholding, clique-filtration analysis, persistent homology, NWCF feature extraction, and ML-based validation.",
-      outputs:
-        "Topology feature vectors, persistence summaries, regional descriptors, ML comparison plots, and robustness checks.",
-      metrics:
-        "Classification performance, cross-configuration stability, feature robustness, and topology-feature behavior.",
-    },
+    "id": "intervene",
+    "title": "INTERVENE: Graph AI for Lung-Cancer Relapse",
+    "category": "Biomedical AI",
+    "tag": "ML",
+    "repo": "https://github.com/Kxvya18/intervene-luad-graph-attention",
+    "text": "Graph-sparse attention over biological module tokens; relapse signature with stability, permutation and external-cohort checks.",
+    "detail": {
+      "title": "INTERVENE: Interpretable Graph-Sparse Attention for LUAD Relapse Discovery",
+      "summary": "Interleaved graph-sparse attention over biological module tokens that learns relapse-associated interactions in lung adenocarcinoma and nominates an MRPL21 / proteasome-core signature.",
+      "stack": "Python, PyTorch, survival analysis (Cox), DepMap, GEO cohorts (GSE31210, GSE30219, GSE37745, GSE68465).",
+      "pipeline": "Module tokenisation, thermodynamic vulnerability priors, biological edge regularisation, attention training, gene-level refinement, ablations and external validation.",
+      "outputs": "Signature genes, attention-edge stability tables, module-removal importance, clinical-adjusted Cox models, cohort audits.",
+      "metrics": "Internal C-index about 0.76 vs about 0.70 for the broader model; permutation null about 0.50; partial support across 4 external cohorts."
+    }
   },
   {
-    id: "moga",
-    title: "MOGA-FCM Cognitive Load Detection",
-    category: "Optimization",
-    tag: "ML",
-    text:
-      "NSGA-III feature selection, Bayesian optimization, Fuzzy C-Means clustering, and baseline comparison.",
-    detail: {
-      title: "MOGA-FCM Cognitive Load Detection",
-      summary:
-        "Unsupervised ML project combining multi-objective feature selection with fuzzy clustering for cognitive-load pattern discovery.",
-      stack:
-        "Python, scikit-learn, NSGA-III, Bayesian optimization, Fuzzy C-Means, physiological features, and driver/session splits.",
-      pipeline:
-        "NSGA-III feature selection, objective balancing, Bayesian optimization, Fuzzy C-Means clustering, baseline comparison, and cross-driver validation.",
-      outputs:
-        "Selected feature subsets, fuzzy memberships, cluster prototypes, baseline comparisons, and result plots.",
-      metrics:
-        "Silhouette score, WCD, BCD, mutual information, feature count, baseline comparisons, and cross-driver transfer behavior.",
-    },
+    "id": "ccld",
+    "title": "Curvature-Constrained Latent Diffusion",
+    "category": "Generative AI",
+    "tag": "ML",
+    "repo": "https://github.com/Kxvya18/curvature-constrained-latent-diffusion",
+    "text": "Latent DDPM for medical masks with curvature guidance and hard topology projection; Betti/Euler errors driven to zero.",
+    "detail": {
+      "title": "Curvature-Constrained Latent Diffusion for Topology-Faithful Polyp-Mask Synthesis",
+      "summary": "Latent diffusion model for expert polyp masks (Kvasir/HyperKvasir) with curvature guidance, topology and area constraints, and late-step projection during reverse diffusion.",
+      "stack": "Python, PyTorch, DDPM, convolutional autoencoder, persistent homology, mask-conditioned renderer.",
+      "pipeline": "Train mask autoencoder, latent diffusion with geometric guidance, hard projection, compare baseline vs curvature-only vs topology-only vs full model.",
+      "outputs": "Generated masks and renders, topology and geometry diagnostics, stress-test tables; book-chapter draft.",
+      "metrics": "Mean Betti-0 and Euler error 1.484 (baseline) to 0 with projection; about 99.7% area-target success across stress cases."
+    }
   },
   {
-    id: "degree",
-    title: "Degree-Collision Reconstruction Bounds",
-    category: "Network Science",
-    tag: "Graphs",
-    text:
-      "Preferential-attachment graph simulation, degree-collision analysis, finite-size checks, and plots.",
-    detail: {
-      title: "Degree-Collision Reconstruction Bounds",
-      summary:
-        "Network-science simulation project studying how degree collisions affect reconstruction of hidden arrival order in preferential-attachment graphs.",
-      stack:
-        "Python, NetworkX-style graph simulation, NumPy, Matplotlib, preferential-attachment parameters, and experiment grids.",
-      pipeline:
-        "Graph simulation, degree-collision analysis, reconstruction experiments, finite-size checks, condensed-regime diagnostics, and validation plotting.",
-      outputs:
-        "Collision probability trends, recoverability bounds, finite-size scaling tables, heatmaps, and reconstruction-accuracy figures.",
-      metrics:
-        "Collision probability, recoverability statistics, finite-size scaling behavior, tau-style diagnostics, and reconstruction error summaries.",
-    },
+    "id": "eeg-load",
+    "title": "Cross-Task EEG Workload Decoding",
+    "category": "NeuroAI",
+    "tag": "ML",
+    "repo": "https://github.com/Kxvya18/eeg-load-signature",
+    "text": "Decodes mental workload on a task the model never saw; population low-rank Riemannian decoder with balanced self-training.",
+    "detail": {
+      "title": "Cross-Task Mental-Workload Decoding from EEG (COG-BCI)",
+      "summary": "Workload decoders collapse on new tasks (AUC 0.83-0.97 within task to 0.48-0.71 across tasks). This project builds a decoder that transfers N-back to MATB and back using population data in a shared low-rank Riemannian space plus label-proportion self-training.",
+      "stack": "Python, NumPy, scikit-learn, Riemannian geometry (SPD tangent spaces), PyTorch (EEGNet, ShallowConvNet baselines).",
+      "pipeline": "Six feature families on identical windows, development/sealed subject split, paired tests against subject-only, pooled, CORAL, Group-DRO and deep baselines, sensitivity analyses.",
+      "outputs": "Development log of every attempt (including negative results), reproducible scripts, result tables.",
+      "metrics": "Development AUC 0.752 / 0.901 vs 0.635 / 0.713 subject-only; beats all baselines so far. Held-out confirmation in progress."
+    }
   },
   {
-    id: "rag",
-    title: "Context-Aware RAG Evaluation Toolkit",
-    category: "RAG",
-    tag: "LLM",
-    text:
-      "Document chunking, retrieval, cited answers, Hit@K, MRR, groundedness, and evaluation records.",
-    detail: {
-      title: "Context-Aware RAG Evaluation Toolkit",
-      summary:
-        "Local RAG and evaluation toolkit for chunking documents, retrieving evidence, generating cited answers, and checking grounding.",
-      stack:
-        "Python, text chunking, TF-IDF/vector-style retrieval, JSON evaluation files, sample documents, and user queries.",
-      pipeline:
-        "Document loading, chunking, vector/text representation, retrieval, context assembly, answer generation, citation tracking, and evaluation reporting.",
-      outputs:
-        "Retrieved chunks, cited answers, rankings, evaluation records, and diagnostic summaries.",
-      metrics:
-        "Hit@K, MRR, answer recall, groundedness, relevance, retrieval precision, and latency-style diagnostics.",
-    },
+    "id": "transferguard",
+    "title": "TransferGuard: Curvature-Audited Source Localization",
+    "category": "Graph ML",
+    "tag": "Graphs",
+    "repo": "https://github.com/Kxvya18/transferguard-curvature-audited-localization",
+    "text": "Selective Boltzmann growth priors for attack-origin ranking under sparse telemetry; ANTIC conference + IEEE journal versions.",
+    "detail": {
+      "title": "Curvature-Audited Boltzmann Evidence for Source Localization in Evolving Networks",
+      "summary": "Temporal graph inference for ranking attack origins under sparse telemetry, combining temporal encoders with a reliability-shrunk Boltzmann growth prior admitted only where it is identifiable.",
+      "stack": "Python, PyTorch, temporal GNNs, IoT-23, TON-IoT, SNAP citation data, conformal prediction.",
+      "pipeline": "480 controlled graph regimes, real transfer checks on 1.19M IoT-23 events, uncertainty and shift audits, intervention studies.",
+      "outputs": "Conference paper (ANTIC) and IEEE journal manuscript with Mahadevi S; evaluation suites and figures.",
+      "metrics": "Selective low-evidence MRR gain 0.0085 overall and 0.0268 in the high-reliability subgroup; shows unconditional fusion can hurt."
+    }
   },
   {
-    id: "gluco",
-    title: "Gluco-Adapt Healthcare AI",
-    category: "Healthcare AI",
-    tag: "Systems",
-    text:
-      "Risk-triggered sensing simulation with physiological features, uncertainty, dashboard outputs, and trade-off views.",
-    detail: {
-      title: "Gluco-Adapt Healthcare AI",
-      summary:
-        "Healthcare AI sensing prototype for adaptive non-invasive glucose trend estimation under uncertainty and risk-triggered sensing.",
-      stack:
-        "Python simulation, dashboard outputs, motion/temperature/PPG features, sweat-sensor concepts, and NIR-style augmentation features.",
-      pipeline:
-        "Signal conditioning, feature extraction, uncertainty propagation, LSTM-style trajectory prediction, risk estimation, adaptive sampling control, and dashboard visualization.",
-      outputs:
-        "Glucose-risk estimates, sensing-mode decisions, uncertainty bands, power/accuracy trade-off views, and dashboard summaries.",
-      metrics:
-        "Risk threshold behavior, uncertainty level, monitoring accuracy, simulated power consumption, alert rate, and drift-correction behavior.",
-    },
+    "id": "qcert",
+    "title": "QCertRoute: Shot-Adaptive Quantum Expert Routing",
+    "category": "Quantum ML",
+    "tag": "Graphs",
+    "repo": "https://github.com/Kxvya18/qcertroute-quantum-expert-routing",
+    "text": "Variational circuit fuses temporal-network experts; sequential confidence stops measuring once the top-10 is certified.",
+    "detail": {
+      "title": "Shot-Adaptive Quantum Expert Routing with Certified Top-Ten Decisions on Temporal Networks",
+      "summary": "Decision-aware quantum expert routing: a shallow variational circuit fuses recent-contact and historical-diffusion experts from shared-basis bitstring readouts, and spends measurement shots only until the shortlist is certified.",
+      "stack": "Python, variational quantum circuits, temporal communication networks, sequential statistics.",
+      "pipeline": "Circuit design, local and pairwise readouts, shot-adaptive certification, confirmatory and stress runs.",
+      "outputs": "IEEE conference manuscript with Mahadevi S, figures and reports.",
+      "metrics": "Certified top-ten decisions with fewer measurement shots than fixed-precision estimation."
+    }
   },
   {
-    id: "intervene",
-    title: "INTERVENE DepMap / LUAD Relapse Discovery",
-    category: "Biomedical AI",
-    tag: "ML",
-    text:
-      "Biomedical AI analysis using module features, graph-sparse attention, stability checks, and validation tables.",
-    detail: {
-      title: "INTERVENE DepMap / LUAD Relapse Discovery",
-      summary:
-        "Computational-biology AI project exploring graph-sparse attention and module-level features for LUAD relapse analysis.",
-      stack:
-        "Python, biomedical datasets, module-token features, graph-sparse attention, survival-analysis concepts, and validation cohorts.",
-      pipeline:
-        "Prepare cohort/module features, run attention-based analysis, compare module importance, check stability across runs, and review external cohort behavior.",
-      outputs:
-        "Candidate module/gene summaries, attention tables, ablation outputs, validation tables, and analysis figures.",
-      metrics:
-        "Attention stability, module-removal effect, relapse separation, survival-analysis summaries, and validation/falsification checks.",
-    },
+    "id": "carbon",
+    "title": "CarbonTwin-R: Causal Digital Twin for Building Carbon",
+    "category": "Time Series",
+    "tag": "ML",
+    "repo": "https://github.com/Kxvya18/carbon-twin-R",
+    "text": "Leakage-controlled digital twin on 19,735 real observations with conformal uncertainty, drift detection and an API.",
+    "detail": {
+      "title": "CarbonTwin-R: Causal Temporal Digital Twin for Avoidable Carbon",
+      "summary": "Real-data digital twin estimating avoidable building energy and carbon, with chronological train/selection/calibration/test partitions.",
+      "stack": "Python, scikit-learn, XGBoost, PyTorch, Graphical Lasso, Double ML, FastAPI, Streamlit, Docker.",
+      "pipeline": "Expanding-window model selection, nine-zone dependence graph, controlled faults, CUSUM/SPRT detection, Kalman state estimation, causal checks.",
+      "outputs": "Simulator, REST API, model registry, lineage manifests and tests for leakage, coverage and temporal splits.",
+      "metrics": "Fault localisation, sequential detection delay, conformal coverage and avoidable-energy estimates on held-out data."
+    }
   },
+  {
+    "id": "copilot",
+    "title": "Enterprise Knowledge Copilot",
+    "category": "GenAI",
+    "tag": "LLM",
+    "repo": "https://github.com/Kxvya18/enterprise-knowledge-copilot",
+    "text": "Governed hybrid-RAG platform with citations, groundedness checks, role-aware access and Azure integration.",
+    "detail": {
+      "title": "Enterprise Knowledge Copilot: Governed Hybrid RAG",
+      "summary": "Full-stack knowledge copilot with document upload, chunking, versioned metadata, role-aware access and citation-grounded answers.",
+      "stack": "FastAPI, React, TypeScript, hybrid vector + keyword retrieval, re-ranking, Azure AI Search, Azure Blob Storage, Docker, GitHub Actions.",
+      "pipeline": "Ingestion, retrieval with duplicate suppression, answer generation, unsupported-claim detection, human handover.",
+      "outputs": "Audit logs for ingestion, queries, evaluation and governance; deployment templates.",
+      "metrics": "Hit@K, MRR, latency, groundedness and review-flag rates."
+    }
+  },
+  {
+    "id": "pirge",
+    "title": "PIRGE-CodeGuard: Safety for Coding Agents",
+    "category": "Agent Safety",
+    "tag": "LLM",
+    "repo": "https://github.com/Kxvya18/pirge-codeguard",
+    "text": "Converts coding-agent actions into structured warrants before execution; provenance, capability scoping and an audit ledger.",
+    "detail": {
+      "title": "PIRGE-CodeGuard: Pre-Execution Safety and Provenance for Coding Agents",
+      "summary": "Safety layer that checks coding-agent commands, edits and tool calls before execution using instruction provenance, capability capsules and command-intent checks.",
+      "stack": "Python, graph modelling, policy rules, local LLM (Qwen Coder) traces, disposable workspaces, pytest.",
+      "pipeline": "Parse action, build provenance graph, compare intent with the user goal, apply policy, allow / block / substitute, record in a hash-chained ledger.",
+      "outputs": "Decision graphs, audit certificates, HTML review dashboard, regression tests.",
+      "metrics": "On real Qwen Coder proposals: 7 safe actions executed, 16 risky actions blocked, zero allowed-action failures."
+    }
+  },
+  {
+    "id": "cleardue",
+    "title": "ClearDue: Agentic Finance Operations",
+    "category": "Agentic AI",
+    "tag": "Systems",
+    "repo": "https://github.com/Kxvya18/cleardue",
+    "text": "LangGraph agents that investigate B2B short payments with a separate verifier model and deterministic safety gates.",
+    "detail": {
+      "title": "ClearDue: Agentic Resolution of B2B Short Payments",
+      "summary": "Agentic finance-operations system that ingests payments, detects discrepancies, gathers customer evidence and proposes resolutions behind independent verification.",
+      "stack": "Python, LangGraph, PostgreSQL + pgvector, local Qwen investigator, Gemma verifier, optional Claude, Docker, Alembic.",
+      "pipeline": "Idempotent payment ingestion, discrepancy cases with immutable event history, tool decisions, hypothesis, action, verification, safety gate, durable checkpoints.",
+      "outputs": "Multi-tenant product slice with citations, verifier decisions and blocked proposals.",
+      "metrics": "Exact, partial, cumulative, overpayment and currency-mismatch handling under tests."
+    }
+  }
 ];
 
 export const projectIndex = [
   {
-    title: "Thermodynamic Inference in Preferential Attachment Networks",
-    text:
-      "Python graph simulation, likelihood estimation, inverse-parameter inference, and finite-size diagnostics.",
+    "title": "HART Adapter Placement for Sampling-Rate Transfer",
+    "text": "Wearable HAR: where adapters should sit relative to a frozen time-frequency contextualizer. Presented at CIMA 2026.",
+    "repo": "https://github.com/Kxvya18/hart-sampling-rate-adapters"
   },
   {
-    title: "Model Calibration and Overconfidence Diagnostics",
-    text: "ECE, Brier score, temperature scaling, reliability diagrams, noisy data, and OOD confidence.",
+    "title": "Network Archaeology: Degree-Collision Bounds",
+    "text": "Limits on reconstructing preferential-attachment growth history from a final snapshot.",
+    "repo": "https://github.com/Kxvya18/degree-collision-reconstruction-bound"
   },
   {
-    title: "Cross-Domain Visual Robustness",
-    text: "MNIST-to-SVHN transfer, HOG, PCA, classical ML baselines, and confusion-matrix analysis.",
+    "title": "Thermodynamic Inference in Preferential Attachment",
+    "text": "Inferring attachment parameters from a single network snapshot; MLE bias and finite-size scaling.",
+    "repo": "https://github.com/Kxvya18/thermodynamic-pa-inference-single-snapshot"
   },
   {
-    title: "Smart Resource Allocation System",
-    text: "Django booking workflows, REST serializers, role-aware validation, conflict detection, and dashboards.",
+    "title": "Cost-Aware Active Telemetry (RAG-MoE)",
+    "text": "Leakage-controlled endpoint localization on LANL red-team data with priced telemetry and a reliability-aware mixture of experts.",
+    "repo": "https://github.com/Kxvya18/cost-aware-active-telemetry"
   },
   {
-    title: "Hypergraph Spectral IIoT Attack Detection",
-    text: "Hypergraph construction, spectral descriptors, attack abstractions, and comparative diagnostics.",
+    "title": "Graph-Spectral Early-Warning Signals",
+    "text": "15,200-condition identifiability study and 800-run confirmatory study for physiological transitions; CHB-MIT pipeline.",
+    "repo": "https://github.com/Kxvya18/graph-spectral-early-warning"
   },
   {
-    title: "Enterprise Knowledge Copilot",
-    text: "FastAPI, React, TypeScript, document ingestion, RAG retrieval, citations, eval metrics, and monitoring.",
+    "title": "NWCF: EEG Network Topology",
+    "text": "Clique-filtration operator with stability proofs and a pre-registered evaluation, negative confirmation reported.",
+    "repo": "https://github.com/Kxvya18/nwcf-eeg-topology"
   },
   {
-    title: "GenAI RAG Evaluation Lab",
-    text: "Retrieval QA experiments, sample documents, evaluation datasets, prompt behavior, and groundedness checks.",
+    "title": "HCP MEG Brain-State Pilot",
+    "text": "Source-space MEG pipeline (LCMV, 68 parcels) with pre-specified probes.",
+    "repo": "https://github.com/Kxvya18/hcp-meg-brain-state-pilot"
   },
   {
-    title: "Curvature-Constrained Latent Diffusion",
-    text: "Geometry-aware latent modeling, diffusion-style experiments, curvature constraints, and diagnostics.",
+    "title": "COG-BCI Integrity Audit",
+    "text": "Found 8 participant IDs with byte-identical EEG in a public BCI dataset; reproducible audit script.",
+    "repo": "https://github.com/Kxvya18/cogbci-integrity-audit"
   },
   {
-    title: "Graph Spectral Early-Warning Signals",
-    text: "Graph-spectral physiology modeling for transition signals, network descriptors, and scientific ML-style analysis.",
+    "title": "GLUCO-ADAPT",
+    "text": "Safety-aware adaptive sensing for wearable glucose estimation (simulation): 7.46% MARD, 97.76% Clarke A+B.",
+    "repo": "https://github.com/Kxvya18/gluco-adapt-healthcare-ai"
   },
   {
-    title: "AI GTM Lead Enrichment Automation",
-    text: "CSV lead enrichment, rule-based scoring, LLM prompt payloads, CRM-ready JSON, and Zapier-style webhook payloads.",
+    "title": "MOGA-FCM Cognitive Load",
+    "text": "NSGA-III feature selection with Bayesian-tuned fuzzy clustering on driving physiology.",
+    "repo": "https://github.com/Kxvya18/moga-fcm-cognitive-load-detection"
   },
+  {
+    "title": "MethaneTwin-R",
+    "text": "Physics-informed geospatial ML for methane plumes from NASA EMIT and ERA5.",
+    "repo": "https://github.com/Kxvya18/Methane-twin-R"
+  },
+  {
+    "title": "chaosctl: AI Chaos Engineering",
+    "text": "Bosch hackathon: 9 LangGraph agents, AI-written FMEA, verified rollback on the OpenTelemetry Demo.",
+    "repo": "https://github.com/Kxvya18/chaos-engineering"
+  },
+  {
+    "title": "ChangeShield",
+    "text": "Repairs browser automations that break when the target application changes.",
+    "repo": "https://github.com/Kxvya18/chnage-shield"
+  },
+  {
+    "title": "SupportOps Copilot",
+    "text": "GitHub issue triage with evidence display and human approval.",
+    "repo": "https://github.com/Kxvya18/supportops-copilot"
+  },
+  {
+    "title": "RevenueOps Agent Control Tower",
+    "text": "Multi-agent CRM revenue-risk detection: 8,800 opportunities to 170 action cards.",
+    "repo": "https://github.com/Kxvya18/revenueops-agent-control-tower"
+  },
+  {
+    "title": "AI GTM Lead Enrichment",
+    "text": "CSV-to-CRM enrichment, priority scoring and webhook payloads.",
+    "repo": "https://github.com/Kxvya18/ai-gtm-lead-enrichment-automation"
+  },
+  {
+    "title": "Context-Aware RAG Evaluation Toolkit",
+    "text": "Dependency-free RAG harness: Hit@K, MRR, groundedness.",
+    "repo": "https://github.com/Kxvya18/context-aware-rag-evaluation"
+  },
+  {
+    "title": "Cross-Domain Visual Robustness",
+    "text": "Degradation of classical models under MNIST-to-SVHN shift.",
+    "repo": "https://github.com/Kxvya18/cross-domain-visual-robustness"
+  },
+  {
+    "title": "Model Calibration Diagnostics",
+    "text": "ECE, Brier score, reliability diagrams and temperature scaling under shift.",
+    "repo": "https://github.com/Kxvya18/model-calibration-diagnostics"
+  },
+  {
+    "title": "Smart Resource Allocation",
+    "text": "Conflict-aware Django booking platform with REST APIs.",
+    "repo": "https://github.com/Kxvya18/smart_resource_allocation"
+  }
 ];
 
 export const evidence = [
@@ -289,7 +361,7 @@ export const education = [
     score: "Score 96%",
   },
   {
-    school: "Appollo National Public School",
+    school: "Apollo National Public School",
     degree: "Secondary Education",
     period: "2017 – 2021",
     score: "Score 96%",
@@ -318,10 +390,7 @@ export const contact = {
   githubLabel: "github.com/Kxvya18",
   linkedin: "https://linkedin.com/in/kavya-kalavala-6008b5286",
   linkedinLabel: "linkedin.com/in/kavya-kalavala-6008b5286",
-  // External hosted CV (Google Drive)
-  cvUrl:
-    "https://docs.google.com/document/d/1_zQFjbNXvTDSV7jBB8wRSFSsuCY3XPNg/export?format=docx",
-  // PDF version (Google Drive direct download)
-  cvPdfUrl:
-    "https://drive.google.com/uc?export=download&id=1IXG3gqPNyBb6YgPwFO26ozi17cVcHxs-",
+  // ATS resume served from /public
+  cvUrl: "/Kavya_Kalavala_Resume.docx",
+  cvPdfUrl: "/Kavya_Kalavala_Resume.docx",
 };

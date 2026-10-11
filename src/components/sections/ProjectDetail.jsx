@@ -55,6 +55,15 @@ export default function ProjectDetail({ project, onClose }) {
               <p className="text-[#b8ac8c] text-sm leading-relaxed">{r.value}</p>
             </div>
           ))}
+          {project.repo && (
+            <div className="grid md:grid-cols-[140px_1fr] gap-3 md:gap-6">
+              <div className="text-[10px] tracking-[0.25em] uppercase text-[#8a7c5c]">Repository</div>
+              <a href={project.repo} target="_blank" rel="noopener noreferrer"
+                 className="text-[#c9a961] text-sm underline underline-offset-4 hover:text-[#e6d9a8] break-all">
+                {project.repo.replace("https://", "")}
+              </a>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>

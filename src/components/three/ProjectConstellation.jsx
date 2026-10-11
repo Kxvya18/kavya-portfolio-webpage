@@ -59,9 +59,10 @@ function buildGraph() {
   return { nodes, centers, segments: seg };
 }
 
-function Constellation({ active, setActive, spin }) {
+function Constellation({ active, setActive, spin, offsetX = 0 }) {
   const group = useRef();
   const mesh = useRef();
+  const hit = useRef();
   const navigate = useNavigate();
   const { nodes, segments } = useMemo(buildGraph, []);
   const [hover, setHover] = useState(null);
@@ -75,16 +76,18 @@ function Constellation({ active, setActive, spin }) {
       const s = n.featured ? 1.35 : 0.9;
       m.compose(n.pos, new THREE.Quaternion(), new THREE.Vector3(s, s, s));
       mesh.current.setMatrixAt(i, m);
+      hit.current.setMatrixAt(i, m);
       mesh.current.setColorAt(i, colorOf[n.area]);
     });
     mesh.current.instanceMatrix.needsUpdate = true;
+    hit.current.instanceMatrix.needsUpdate = true;
     if (mesh.current.instanceColor) mesh.current.instanceColor.needsUpdate = true;
     mesh.current.material.needsUpdate = true; // recompile so per-instance colours are used
   }, [nodes, colorOf]);
 
   useFrame((state, delta) => {
     if (!group.current) return;
-    if (spin && active === null) group.current.rotation.y += delta * 0.07;
+    if (spin && active === null && hover === null) group.current.rotation.y += delta * 0.07;
     const px = state.pointer.x * 0.25, py = state.pointer.y * 0.15;
     group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, -py, 0.04);
     group.current.rotation.z = THREE.MathUtils.lerp(group.current.rotation.z, px * 0.3, 0.04);
@@ -93,19 +96,23 @@ function Constellation({ active, setActive, spin }) {
   const shown = active !== null ? nodes[active] : hover !== null ? nodes[hover] : null;
 
   return (
-    <group ref={group}>
+    <group ref={group} position={[offsetX, 0, 0]}>
       <lineSegments geometry={lineGeo}>
         <lineBasicMaterial color="#8a7c5c" transparent opacity={0.28} />
       </lineSegments>
+      <instancedMesh ref={mesh} args={[null, null, nodes.length]} raycast={() => null}>
+        <sphereGeometry args={[0.08, 20, 20]} />
+        <meshStandardMaterial roughness={0.35} metalness={0.25} emissive="#2a2416" />
+      </instancedMesh>
       <instancedMesh
-        ref={mesh}
+        ref={hit}
         args={[null, null, nodes.length]}
         onPointerMove={(e) => { e.stopPropagation(); setHover(e.instanceId); document.body.style.cursor = "pointer"; }}
         onPointerOut={() => { setHover(null); document.body.style.cursor = ""; }}
         onClick={(e) => { e.stopPropagation(); setActive(e.instanceId === active ? null : e.instanceId); }}
       >
-        <sphereGeometry args={[0.07, 20, 20]} />
-        <meshStandardMaterial roughness={0.35} metalness={0.25} emissive="#2a2416" />
+        <sphereGeometry args={[0.22, 8, 8]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </instancedMesh>
       {shown && (
         <Html position={shown.pos} center distanceFactor={7} zIndexRange={[30, 0]}>
@@ -173,7 +180,7 @@ export default function ProjectConstellation({ profile, inView, onReady }) {
       <ambientLight intensity={0.55} />
       <directionalLight position={[4, 5, 5]} intensity={1.1} />
       <pointLight position={[-5, -3, -4]} intensity={0.6} color="#c9a961" />
-      <Constellation active={active} setActive={setActive} spin={!profile.reducedMotion} />
+      <Constellation active={active} setActive={setActive} spin={!profile.reducedMotion} offsetX={profile.portrait ? 0 : 0.55} />
       {dust > 0 && <Dust count={dust} />}
     </Canvas>
   );

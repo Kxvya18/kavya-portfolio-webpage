@@ -209,6 +209,10 @@ export const selectedWork = [
 
 export const projectIndex = [
   {
+    "title": "CensusAI: Census Data Pipeline Optimisation (Remote, Australia)",
+    "text": "Data-pipeline engineering on an Australian Bureau of Statistics census platform: Bronze Parquet transformed directly in DuckDB into a 2.03-billion-row database, 31% faster build (2,974 s to 2,043 s) at 4.5 GB peak memory."
+  },
+  {
     "title": "HART Adapter Placement for Sampling-Rate Transfer",
     "text": "Wearable HAR: where adapters should sit relative to a frozen time-frequency contextualizer.",
     "repo": "https://github.com/Kxvya18/hart-sampling-rate-adapters"

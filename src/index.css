@@ -113,3 +113,6 @@ code {
         border-bottom-color: inherit;
     }
 }
+
+/* Never let a single element widen the page on phones (prevents zoom-out / off-screen nav) */
+html, body { overflow-x: clip; }

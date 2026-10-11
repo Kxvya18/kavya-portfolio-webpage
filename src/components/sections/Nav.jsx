@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { heroData } from "../../mock";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
@@ -99,14 +100,14 @@ export default function Nav() {
         </div>
       </div>
 
-      <AnimatePresence>
+      {createPortal(<AnimatePresence>
         {open && (
           <motion.nav
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden fixed inset-x-0 top-[68px] bottom-0 bg-[#0e0c08]/97 backdrop-blur-xl border-t border-[#2a2416] px-6 pt-6 pb-10 overflow-y-auto"
+            className="md:hidden fixed inset-x-0 top-[68px] bottom-0 z-[60] bg-[#0e0c08]/97 backdrop-blur-xl border-t border-[#2a2416] px-6 pt-6 pb-10 overflow-y-auto"
           >
             {[{ label: "Home", to: "/" }, ...navItems].map((n, i) => (
               <motion.div key={n.label} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.03 * i }}>
@@ -122,7 +123,7 @@ export default function Nav() {
             ))}
           </motion.nav>
         )}
-      </AnimatePresence>
+      </AnimatePresence>, document.body)}
     </motion.header>
   );
 }

@@ -109,8 +109,8 @@ export default function GlobalCornerScene() {
   const profile = useDeviceProfile();
   const idle = useIdleReady(2500); // never compete with first paint / page entrance animations
   if (!idle) return null;
-  // decorative only: skip on phones, touch-first devices, weak GPUs and reduced-motion
-  if (profile.tier === "none" || profile.tier === "low" || profile.touch || profile.reducedMotion || profile.width < 900) return null;
+  // decorative: skipped only where it cannot run well (no WebGL, phones); reduced-motion keeps it, but still
+  if (profile.tier === "none" || profile.width < 768 || (profile.touch && profile.width < 1024)) return null;
   return <CornerScene profile={profile} />;
 }
 
@@ -159,7 +159,7 @@ function CornerScene({ profile }) {
       style={{ pointerEvents: "none" }}
     >
       <div className="w-full h-full rounded-full overflow-hidden border border-[#3a3220]/60 bg-[#0e0c08]/40 backdrop-blur-md">
-        <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }} dpr={DPR[profile.tier]} frameloop={mode === "hidden" ? "never" : "always"}>
+        <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }} dpr={DPR[profile.tier]} frameloop={mode === "hidden" ? "never" : profile.reducedMotion ? "demand" : "always"}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[3, 3, 3]} intensity={0.8} />
           <pointLight position={[-3, -2, 2]} intensity={0.4} color="#f0e6cf" />

@@ -316,21 +316,91 @@ export const projectIndex = [
 
 export const evidence = [
   {
-    caption: "PIRGE CodeGuard decision behavior for pre-execution coding-agent safety.",
-    kind: "decision-graph",
+    "repo": "palletcast-forecasting-mlops",
+    "kind": "ci",
+    "kindLabel": "CI passing",
+    "img": "/evidence/palletcast-ci.jpg",
+    "title": "PalletCast CI pipeline on every push",
+    "caption": "GitHub Actions runs lint and fast tests, the full-size data and feature pipeline with fault and leakage checks, and builds the forecast service image.",
+    "stats": [
+      "3 / 3 jobs green",
+      "4 min 33 s"
+    ],
+    "url": "https://github.com/Kxvya18/palletcast-forecasting-mlops/actions",
+    "alt": "GitHub Actions run summary for palletcast-forecasting-mlops showing three successful jobs"
   },
   {
-    caption: "Resource-prediction and model-evaluation diagnostics.",
-    kind: "chart",
+    "repo": "palletcast-forecasting-mlops",
+    "kind": "results",
+    "kindLabel": "Results",
+    "img": "/evidence/palletcast-results.jpg",
+    "title": "Forecast accuracy and the 17-model contest",
+    "caption": "Results table from the README and the leaderboard of 17 models across 5 families on the 2025 backtest.",
+    "stats": [
+      "WAPE 10.8%",
+      "vs 14.6% best rule",
+      "10.9% on 2026"
+    ],
+    "url": "https://github.com/Kxvya18/palletcast-forecasting-mlops#results-at-a-glance",
+    "alt": "PalletCast README results table and model leaderboard bar chart"
   },
   {
-    caption: "Topology-derived EEG features in ML evaluation.",
-    kind: "persistence",
+    "repo": "DelegNet",
+    "kind": "results",
+    "kindLabel": "Results table",
+    "img": "/evidence/delegnet-evasion-table.jpg",
+    "title": "DelegNet under evasion attacks",
+    "caption": "The evasion-suite table as committed: blocklisting sits at chance on unseen contract families while DelegNet keeps its accuracy under each attack.",
+    "stats": [
+      "AUROC 0.9906",
+      "recall 0.984",
+      "blocklist 0.50"
+    ],
+    "url": "https://github.com/Kxvya18/DelegNet/blob/main/results/tables/evasion_suite.csv",
+    "alt": "GitHub rendering of DelegNet evasion_suite.csv results"
   },
   {
-    caption: "Unified reconstruction and collision behavior.",
-    kind: "heatmap",
+    "repo": "pirge-codeguard",
+    "kind": "audit",
+    "kindLabel": "Real LLM trace",
+    "img": "/evidence/pirge-audit-matrix.jpg",
+    "title": "Coding-agent actions audited before execution",
+    "caption": "Action audit matrix from a real Qwen Coder trace: which checks fired for each proposed command or edit.",
+    "stats": [
+      "16 / 16 risky blocked",
+      "7 / 7 safe executed"
+    ],
+    "url": "https://github.com/Kxvya18/pirge-codeguard/tree/main/figures/advanced",
+    "alt": "PIRGE-CodeGuard real LLM action audit matrix on GitHub"
   },
+  {
+    "repo": "cogbci-integrity-audit",
+    "kind": "audit",
+    "kindLabel": "Data audit",
+    "img": "/evidence/cogbci-audit.jpg",
+    "title": "Duplicate recordings in a public EEG dataset",
+    "caption": "Reproducible audit showing that 8 participant IDs in COG-BCI share byte-identical EEG in every session.",
+    "stats": [
+      "87 recordings hashed",
+      "8 duplicated IDs"
+    ],
+    "url": "https://github.com/Kxvya18/cogbci-integrity-audit",
+    "alt": "README of cogbci-integrity-audit with the audit command output"
+  },
+  {
+    "repo": "chaos-engineering",
+    "kind": "ci",
+    "kindLabel": "CI passing",
+    "img": "/evidence/chaosctl-ci.jpg",
+    "title": "chaosctl test suite (Bosch hackathon)",
+    "caption": "Continuous integration for the AI-driven chaos-engineering tool: repository checks and the Python test suite.",
+    "stats": [
+      "2 / 2 jobs green",
+      "4 min 35 s"
+    ],
+    "url": "https://github.com/Kxvya18/chaos-engineering/actions",
+    "alt": "GitHub Actions run summary for chaos-engineering showing successful jobs"
+  }
 ];
 
 export const skills = [

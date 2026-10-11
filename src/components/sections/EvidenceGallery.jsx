@@ -1,120 +1,100 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, ExternalLink, X, CheckCircle2 } from "lucide-react";
 import { evidence } from "../../mock";
 
-function DecisionGraph() {
-  return (
-    <svg viewBox="0 0 200 120" className="w-full h-full">
-      <defs>
-        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#c9a961" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#8a7c5c" stopOpacity="0.6" />
-        </linearGradient>
-      </defs>
-      {[[30,60],[80,30],[80,90],[130,20],[130,60],[130,100],[180,60]].map((n,i)=>(
-        <g key={i}>
-          <circle cx={n[0]} cy={n[1]} r="5" fill="url(#g1)" />
-        </g>
-      ))}
-      {[[30,60,80,30],[30,60,80,90],[80,30,130,20],[80,30,130,60],[80,90,130,60],[80,90,130,100],[130,20,180,60],[130,60,180,60],[130,100,180,60]].map((e,i)=>(
-        <line key={i} x1={e[0]} y1={e[1]} x2={e[2]} y2={e[3]} stroke="#8a7c5c" strokeWidth="0.6" opacity="0.6" />
-      ))}
-    </svg>
-  );
-}
-
-function Chart() {
-  const pts = [10, 30, 24, 45, 38, 60, 55, 72, 68, 82, 78, 90];
-  const path = pts
-    .map((y, i) => `${i === 0 ? "M" : "L"} ${i * 16 + 10} ${110 - y}`)
-    .join(" ");
-  return (
-    <svg viewBox="0 0 200 120" className="w-full h-full">
-      <path d={path} stroke="#c9a961" strokeWidth="1.5" fill="none" />
-      <path d={path + " L 190 110 L 10 110 Z"} fill="#c9a961" opacity="0.1" />
-      {pts.map((y, i) => (
-        <circle key={i} cx={i * 16 + 10} cy={110 - y} r="1.6" fill="#e6d9a8" />
-      ))}
-    </svg>
-  );
-}
-
-function Persistence() {
-  return (
-    <svg viewBox="0 0 200 120" className="w-full h-full">
-      {[10, 24, 38, 52, 66, 80, 94].map((y, i) => (
-        <line key={i} x1="10" y1={y} x2={30 + i * 24} y2={y} stroke="#c9a961" strokeWidth="2" opacity={0.4 + i * 0.08} />
-      ))}
-      <line x1="10" y1="5" x2="10" y2="115" stroke="#3a3220" strokeWidth="0.5" />
-      <line x1="10" y1="115" x2="195" y2="115" stroke="#3a3220" strokeWidth="0.5" />
-    </svg>
-  );
-}
-
-function Heatmap() {
-  const cells = [];
-  for (let r = 0; r < 6; r++)
-    for (let c = 0; c < 10; c++) {
-      const v = Math.abs(Math.sin(r * 0.7 + c * 0.4));
-      cells.push({ r, c, v });
-    }
-  return (
-    <svg viewBox="0 0 200 120" className="w-full h-full">
-      {cells.map((c, i) => (
-        <rect
-          key={i}
-          x={10 + c.c * 18}
-          y={10 + c.r * 16}
-          width="16"
-          height="14"
-          fill="#c9a961"
-          opacity={0.15 + c.v * 0.7}
-        />
-      ))}
-    </svg>
-  );
-}
-
-const render = {
-  "decision-graph": <DecisionGraph />,
-  chart: <Chart />,
-  persistence: <Persistence />,
-  heatmap: <Heatmap />,
-};
-
+/** Real snapshots of public GitHub pages: CI runs, results tables and audits (captured from the live repos). */
 export default function EvidenceGallery() {
+  const [open, setOpen] = useState(null);
+  useEffect(() => {
+    if (open === null) return undefined;
+    const onKey = (e) => e.key === "Escape" && setOpen(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
-    <section className="relative bg-[#0e0c08] py-32 border-t border-[#2a2416]">
-      <div className="max-w-[1400px] mx-auto px-8">
-        <div className="mb-14">
-          <p className="text-[#8a7c5c] text-xs tracking-[0.3em] uppercase mb-4">
-            Evidence Gallery
-          </p>
+    <section className="relative bg-[#0e0c08] py-24 md:py-32 border-t border-[#2a2416]">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
+        <div className="mb-12 max-w-3xl">
+          <p className="text-[#8a7c5c] text-xs tracking-[0.3em] uppercase mb-4">Evidence</p>
           <h2 className="font-serif text-[#f5efe0] text-4xl md:text-5xl lg:text-6xl leading-[1.05]">
-            Outputs, diagnostics, and dashboards
+            Straight from the repositories
           </h2>
+          <p className="mt-5 text-[#b8ac8c] text-sm md:text-base leading-relaxed">
+            Unedited snapshots of public GitHub pages: passing CI pipelines, result tables and audit outputs.
+            Every card links to the live page so the numbers can be checked.
+          </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
           {evidence.map((e, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
+            <motion.article
+              key={e.img}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              whileHover={{ y: -4 }}
-              className="group rounded-2xl border border-[#2a2416] bg-[#141009] overflow-hidden hover:border-[#c9a961]/50 transition-colors"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: (i % 3) * 0.08, duration: 0.5 }}
+              className="flex flex-col rounded-xl border border-[#2a2416] bg-[#141009] overflow-hidden hover:border-[#c9a961]/50 transition-colors"
             >
-              <div className="aspect-[5/3] bg-[#0e0c08] border-b border-[#2a2416] p-4">
-                {render[e.kind]}
+              <header className="flex items-center gap-2 px-4 py-3 border-b border-[#2a2416] font-mono text-[12px] text-[#a89b7a] min-w-0">
+                <Github className="w-4 h-4 shrink-0" />
+                <span className="truncate">Kxvya18 / <span className="text-[#e6e1d6]">{e.repo}</span></span>
+                <span className="ml-auto shrink-0 inline-flex items-center gap-1 rounded-full border border-[#3a3220] px-2 py-0.5 text-[10px] uppercase tracking-wider">
+                  {e.kind === "ci" && <CheckCircle2 className="w-3 h-3 text-[#7fb8a4]" />}
+                  {e.kindLabel}
+                </span>
+              </header>
+
+              <button
+                type="button"
+                onClick={() => setOpen(i)}
+                className="block bg-[#0e0c08] border-b border-[#2a2416] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c9a961]"
+                aria-label={`Enlarge snapshot: ${e.title}`}
+              >
+                <img src={e.img} alt={e.alt} loading="lazy" className="w-full aspect-[16/10] object-cover object-top" />
+              </button>
+
+              <div className="flex flex-col gap-3 p-5 flex-1">
+                <h3 className="font-serif text-[#f5efe0] text-lg leading-snug">{e.title}</h3>
+                <p className="text-[#a89b7a] text-sm leading-relaxed">{e.caption}</p>
+                <div className="flex flex-wrap gap-2 mt-auto pt-1">
+                  {e.stats.map((s) => (
+                    <span key={s} className="rounded-md border border-[#3a3220] px-2 py-1 font-mono text-[11px] text-[#e6d9a8]">{s}</span>
+                  ))}
+                </div>
+                <a href={e.url} target="_blank" rel="noopener noreferrer"
+                   className="inline-flex items-center gap-1.5 text-[#c9a961] text-xs hover:text-[#e6d9a8] w-fit">
+                  View on GitHub <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
-              <div className="p-5">
-                <p className="text-[#a89b7a] text-xs leading-relaxed">{e.caption}</p>
-              </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {open !== null && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[120] bg-[#0e0c08]/90 backdrop-blur-sm flex items-center justify-center p-3 sm:p-8"
+            onClick={() => setOpen(null)}
+            role="dialog" aria-modal="true" aria-label={evidence[open].title}
+          >
+            <button type="button" onClick={() => setOpen(null)} aria-label="Close"
+              className="absolute top-4 right-4 w-11 h-11 rounded-full border border-[#3a3220] bg-[#141009] text-[#e6e1d6] flex items-center justify-center">
+              <X className="w-5 h-5" />
+            </button>
+            <figure className="max-w-6xl w-full" onClick={(ev) => ev.stopPropagation()}>
+              <img src={evidence[open].img} alt={evidence[open].alt} className="w-full max-h-[80svh] object-contain rounded-lg border border-[#2a2416]" />
+              <figcaption className="mt-3 text-[#b8ac8c] text-sm">
+                {evidence[open].title} ·{" "}
+                <a className="text-[#c9a961] underline" href={evidence[open].url} target="_blank" rel="noopener noreferrer">open on GitHub</a>
+              </figcaption>
+            </figure>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

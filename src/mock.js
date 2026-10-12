@@ -269,7 +269,7 @@ export const projectIndex = [
   },
   {
     "title": "chaosctl: AI Chaos Engineering",
-    "text": "Bosch hackathon: 9 LangGraph agents, AI-written FMEA, verified rollback on the OpenTelemetry Demo.",
+    "text": "Agentic chaos engineering: 9 LangGraph agents, AI-written FMEA, verified rollback on the OpenTelemetry Demo.",
     "repo": "https://github.com/Kxvya18/chaos-engineering"
   },
   {
@@ -392,7 +392,7 @@ export const evidence = [
     "kind": "ci",
     "kindLabel": "CI passing",
     "img": "/evidence/chaosctl-ci.jpg",
-    "title": "chaosctl test suite (Bosch hackathon)",
+    "title": "chaosctl test suite",
     "caption": "Continuous integration for the AI-driven chaos-engineering tool: repository checks and the Python test suite.",
     "stats": [
       "2 / 2 jobs green",

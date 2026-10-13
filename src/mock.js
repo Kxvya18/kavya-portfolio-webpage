@@ -10,6 +10,7 @@ export const heroData = {
 };
 
 export const researchStrip = [
+  "Cloud Security / DevSecOps",
   "Graph ML",
   "Generative AI",
   "NeuroAI / EEG",
@@ -43,6 +44,22 @@ export const selectedWork = [
       "pipeline": "Build a labelled dataset from observed theft outcomes, canonicalise bytecode, extract idioms, score by signed similarity, evaluate under a zero-day protocol that withholds whole code families and under adaptive attacks.",
       "outputs": "Released dataset (637,846 authorizations, 464,178 accounts, 661 contracts), IEEE TIFS-format manuscript, 12 figures, all tables as CSV.",
       "metrics": "Recall 0.984 under every attack; AUROC 0.946 on the first victim of a new contract; 0.16% false-alarm rate when screening signature requests."
+    }
+  },
+  {
+    "id": "asp",
+    "title": "asp: Least-Privilege AWS IAM for Code and AI Agents",
+    "category": "Cloud Security",
+    "tag": "Systems",
+    "repo": "https://github.com/Kxvya18/asp",
+    "text": "Early-stage open-source Python library (MIT, on PyPI as asp-iam): records the AWS calls a script or AI agent really makes and writes the smallest IAM policy that allows them.",
+    "detail": {
+      "title": "asp (Agent Scoped Permissions): Recording AWS Calls to Generate Least-Privilege IAM Policies",
+      "summary": "AI agents and automation scripts are often given broad AWS permissions because nobody knows what they need. asp hooks into boto3, records every call made inside a block, test or agent run, and produces a least-privilege IAM policy scoped to the exact buckets, tables, queues, topics and functions used. Beginner-stage open source: v0.1.1, with issues open for contributors.",
+      "stack": "Python, boto3 / botocore event hooks, AWS IAM, moto (offline AWS), pytest plugin, Terraform, GitHub Actions, uv, PyPI trusted publishing.",
+      "pipeline": "Record boto3 calls, translate API names into the IAM actions AWS checks (e.g. list_objects_v2 to s3:ListBucket), add implicit permissions (KMS for encrypted S3 objects, iam:PassRole, presigned URLs), scope resources to the exact ARNs, then output JSON or a Terraform aws_iam_policy, or check an existing policy for missing, unused and wildcard permissions.",
+      "outputs": "pip-installable package, pytest plugin (pytest --asp, pytest --asp-check role.json to fail CI on permission drift), plain-English explain(), AI-agent example where an LLM agent with S3 tools gets only the 3 permissions it used.",
+      "metrics": "v0.1.1 on PyPI; 46 tests; CI on Python 3.10-3.13 plus terraform validate of the generated policy; tag-triggered release pipeline; two high-severity bugs found in external testing fixed in 0.1.1."
     }
   },
   {
@@ -432,7 +449,7 @@ export const skills = [
   {
     title: "Tools",
     text:
-      "NumPy, pandas, SciPy, scikit-learn, XGBoost, PyTorch, TensorFlow/Keras, Matplotlib, NetworkX, Django, FastAPI, and Jupyter.",
+      "NumPy, pandas, SciPy, scikit-learn, XGBoost, PyTorch, TensorFlow/Keras, Django, FastAPI, AWS (boto3, IAM, S3), Terraform, Docker, GitHub Actions CI/CD, pytest, and Jupyter.",
   },
 ];
 
